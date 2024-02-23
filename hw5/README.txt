@@ -1,2 +1,2 @@
 # Put your SUID number here (e.g., id: 01234567)
-id: 05756291
+id: <your_last_8-digit_student_id_number>
