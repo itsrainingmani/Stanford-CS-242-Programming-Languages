@@ -1,0 +1,21 @@
+# You can write one-line comments in Python style.
+
+# Definition block comes first.
+def inc = S (S (K S) K);
+def _0  = S K;
+def _1  = inc _0;
+def rec = S (K f) (S I I);
+
+# Expression block comes next.
+I x;
+K x y;
+S x y z;
+(((S K) (K x)) (S y));
+# infinite loop
+(S I I) (S I I);
+# S I I rec;  # infinite recursion
+
+# Expected output is as follows:
+# x
+# (f x)
+# (f (f x))

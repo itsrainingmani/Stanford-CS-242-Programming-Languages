@@ -2,7 +2,6 @@
 # DEFINITIONS #
 ###############
 
-
 # Bool
 # - tt x y -->* x.
 # - ff x y -->* y.
@@ -18,6 +17,8 @@ def _0  = S K;
 def _1  = inc _0;
 def _2  = inc _1;
 def _3  = inc _2;
+def c1 = S (K S) K;
+def c2 = ((S ((S (K S)) ((S (K K)) ((S (K S)) ((S ((S (K ((S (K S)) K))) I)) (K I)))))) (K ((S (K K)) I)));
 
 ##########
 # PART 2 #
@@ -25,10 +26,10 @@ def _3  = inc _2;
 # TASK: Implement the following functions.
 
 # BEGIN_YOUR_CODE
-def or     = I;
-def and    = I;
-def not    = I;
-def is_odd = I;
+def or     = ((S ((S (K S)) ((S (K K)) ((S I) (K K))))) (K I));  # or: c2 (c1 (K c1) (c2 I (K K))) I;
+def and    = ((S ((S (K S)) ((S ((S (K S)) ((S (K K)) I))) (K I)))) (K (K (S K))));
+def not    = S (S I S) (K K);
+def is_odd = ((S ((S I) (K ((S ((S I) S)) (K K))))) (K (S K)));
 # END_YOUR_CODE
 
 #########
@@ -41,6 +42,9 @@ section_or; # This symbol will just be printed, so we can keep track of the outp
 (or tt ff) x y;  # x
 (or ff tt) x y;  # x
 (or ff ff) x y;  # y
+
+section_and_abstract;
+x y ff;
 
 section_and;
 (and tt tt) x y;  # x
@@ -57,3 +61,6 @@ section_is_odd;
 (is_odd _1) x y;  # x
 (is_odd _2) x y;  # y
 (is_odd _3) x y;  # x
+
+# section_abstract_is_odd;
+# n not ff;
