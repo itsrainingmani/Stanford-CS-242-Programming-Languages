@@ -6,12 +6,6 @@
 def tt   = \x.\y. x;
 def ff   = \x.\y. y;
 
-# Logical
-def not = \b. b ff tt;
-def or = \x.\y. (x tt y);
-def and = \x.\y. (x y ff);
-
-
 # Numeral
 def inc  = \n.\f.\x. f (n f x);
 def _0   = \f.\x. x;
@@ -19,8 +13,6 @@ def _1   = inc _0;
 def _2   = inc _1;
 def _3   = inc _2;
 def _4   = inc _3;
-def add  = \m.\n. m inc n;
-def mul = \m.\n. m (add n) _0;
 
 # Pair
 def pair = \x.\y.\f. f x y;
@@ -37,17 +29,12 @@ def nil  = \f.\x. x;
 # TASK: Implement the following functions.
 
 # BEGIN_YOUR_CODE
-def is_zero  = \n. n (and ff) tt ;
-def is_odd = \n. n not ff;
-def is_even = \n. n not tt;
-def len      = \l. l (\x. inc) _0;
-def num_zero = \l. l (\h.\s. (is_zero h) (inc s) s) _0;
-def fib_helper = \p. pair (snd p) (add (fst p) (snd p));
-def fib      = \n. fst (n fib_helper (pair _1 _2));
-def dec_helper = \p. pair (snd p) (inc (snd p));
-def dec      = \n. fst (n dec_helper (pair _0 _0));
-def half_helper = \p. (snd p) (pair (inc (fst p)) ff) (pair (fst p) tt);
-def half     = \n. fst (n half_helper (pair _0 ff));
+def is_zero  = \n. n;
+def len      = \l. l;
+def num_zero = \l. l;
+def fib      = \n. n;
+def dec      = \n. n;
+def half     = \n. n;
 # END_YOUR_CODE
 
 #########
