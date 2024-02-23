@@ -34,26 +34,9 @@
 ; Note: You can define any other helper functions.
 
 (define (attempt l)
-    (call/cc  (lambda (continuation)
-                (stack_push continuation)
-                (stack_push (rest l))
-                (first l)
-            )
-    )
+  (void)
 )
 
 (define (assert b)
-    (if b
-        #t
-        (if (stack_empty?)
-            #f
-            (let* ([prev_tail (stack_pop)]
-                   [continuation (stack_pop)])
-                   (if (null? prev_tail)
-                        (assert b)
-                        (continuation (attempt prev_tail))
-                   )
-            )
-        )
-    )
+  (void)
 )
