@@ -1,49 +1,36 @@
+
 ### PROGRAMS ###
 
 # A program is just a sequence of definitions
 class Prog:
     def __init__(self, defns): self.defns = defns
-
     def __repr__(self): return "\n".join(map(str, self.defns))
-
-
 # A definition is just a var and an expression
 class Defn:
     def __init__(self, s, e): self.s, self.e = s, e
-
     def __repr__(self): return "def {} = {};".format(self.s, self.e)
-
 
 ### Expressions ###
 class Expr:
     pass
 
-
 # Var also represents constants; see below
 class Var(Expr):
     def __init__(self, s: str): self.s = s
-
     def __repr__(self): return "{}".format(self.s)
-
 
 class Lam(Expr):
     def __init__(self, s: str, e: Expr): self.s, self.e = s, e
-
     def __repr__(self): return "\{}.{}".format(self.s, self.e)
-
 
 class App(Expr):
     def __init__(self, e1: Expr, e2: Expr): self.e1, self.e2 = e1, e2
-
     def __repr__(self): return "({} {})".format(self.e1, self.e2)
-
 
 class IntConst(Expr):
     def __init__(self, i: int): self.i = i
-
     def __repr__(self): return "{}".format(self.i)
-
-
+    
 ### Types ###
 
 # Note, Type is an abstract base class; all instances are expected to be one of the cases below.
@@ -53,44 +40,31 @@ class IntConst(Expr):
 # IntType() != TypeVar('x') even if we have an equation somewhere saying TypeVar('x') is IntType().
 class Type:
     def __eq__(self, other) -> bool: raise NotImplementedError()
-
     def __hash__(self) -> int: raise NotImplementedError()
-
 
 class IntTp(Type):
     def __eq__(self, other) -> bool:
         return isinstance(other, IntTp)
-
     def __hash__(self): return hash('Int')
-
     def __repr__(self): return "int"
-
 
 class Func(Type):
     def __init__(self, a: Type, b: Type): self.a, self.b = a, b
-
     def __eq__(self, other) -> bool:
         if not isinstance(other, Func): return False
         return self.a == other.a and self.b == other.b
-
     def __hash__(self): return hash(('Func', self.a, self.b))
-
     def __repr__(self):
         a = self.a if not isinstance(self.a, Func) else "({})".format(self.a)
         return "{} -> {}".format(a, self.b)
 
-
 class TpVar(Type):
     def __init__(self, s: str): self.s = s
-
     def __eq__(self, other) -> bool:
         if not isinstance(other, TpVar): return False
         return self.s == other.s
-
     def __hash__(self): return hash(('TpVar', self.s))
-
     def __repr__(self): return self.s
-
 
 ### CONSTANTS ###
 
@@ -106,7 +80,6 @@ CONSTS = {
     '*': Func(_I, Func(_I, _I)),
     'ifz': Func(_I, Func(_I, Func(_I, _I)))
 }
-
 
 ### TYPECHECKING ###
 
