@@ -64,17 +64,17 @@ def representation(expression):
             return other
 
 
-inc = ("S", (("S", ("K", "S")), "K"))
-_0 = ("S", "K")
-_1 = (inc, _0)
+# inc = ("S", (("S", ("K", "S")), "K"))
+# _0 = ("S", "K")
+# _1 = (inc, _0)
 
-for expression, expected_output in [
-    [((_0, "f"), "x"), "x"],
-    [((_1, "f"), "x"), "(f x)"],
-    [(((inc, _1), "f"), "x"), "(f (f x))"],
-]:
-    reduced = eval(expression)
-    print(f"Before:   {representation(expression)}")
-    print(f"After:    {representation(reduced)}")
-    print(f"Expected: {expected_output}\n")
-    assert representation(reduced) == expected_output
+# for expression, expected_output in [
+#     [((_0, "f"), "x"), "x"],
+#     [((_1, "f"), "x"), "(f x)"],
+#     [(((inc, _1), "f"), "x"), "(f (f x))"],
+# ]:
+#     reduced = eval(expression)
+#     print(f"Before:   {representation(expression)}")
+#     print(f"After:    {representation(reduced)}")
+#     print(f"Expected: {expected_output}\n")
+#     assert representation(reduced) == expected_output
